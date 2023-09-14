@@ -1,0 +1,34 @@
+<script>
+
+  /**
+   * Refresh OBS scores after a tournament is created/started.
+   * This overcomes the OBS cache by re-rendering an intermediate
+   * HTML that dynamically loads the expected tournament scores url.
+   * 
+   * This is achieved by performing an OBS browser source refresh using
+   * advanced scene switcher
+   * 
+   * OBS advanced scene switcher checks for mods to a custom log file to
+   * trigger a browser source reload for the DP scores.
+   * 
+   * An apache custom log configuration is setup for requests for
+   * 89balls.png
+   * 
+   */
+
+  (new Image()).src="http://table-2-pc/89balls.png?r="+Math.random();
+  (new Image()).src="http://table-3-pc/89balls.png?r="+Math.random();
+  (new Image()).src="http://table-4-pc/89balls.png?r="+Math.random();
+  (new Image()).src="http://table-5-pc/89balls.png?r="+Math.random();
+  (new Image()).src="http://table-6-pc/89balls.png?r="+Math.random();
+
+  setTimeout(() => {
+    //window.close();
+  }, 1000);
+
+</script>
+
+<h2>Good Times Billiards</h2>
+
+Reloading AETV Digital Pool Tournament Score URLs.
+
