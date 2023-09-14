@@ -15,7 +15,7 @@
   const tableNumber = urlParams.get('table');
   const cacheBuster = Math.random();
 
-  // M/D/YYYY format
+  // M-D-YYYY format
   const dateMDYYYY= new Date().toLocaleDateString('en-US').replaceAll('/', '-');
   
   const tourneyNameSlugMap = {
