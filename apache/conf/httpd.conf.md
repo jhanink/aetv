@@ -1,6 +1,6 @@
 # httpd.conf configuration
 
-## mac
+## MAC
 
 ```
 <Directory "/Library/WebServer/Documents">
@@ -13,7 +13,15 @@
 </Directory>
 ```
 
-## windows
+add at the end of `<IfModule log_config_module>`
+
+```
+    # --- Refresh Browser Sources ---
+    SetEnvIf Request_URI 89balls\.png dprefreshlog
+    CustomLog "/private/var/log/dprefresh.log" common env=dprefreshlog
+```
+
+## WINDOWS
 
 update `<Directory "${SRVROOT}/htdocs">`
 
