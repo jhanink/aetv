@@ -44,7 +44,7 @@ Code, instructions, documentation, and help files for projects that fuel Automat
       CustomLog "logs\dprefresh.log" common env=dprefreshlog
     </IfModule>
     ```
-* OBS
+## OBS
   * scenes
   * score sources
   * advanced scene switcher
