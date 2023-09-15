@@ -14,7 +14,7 @@ However, the AETV platform has added layers of complexity:
 
 1. We have different tournaments on different days
 2. We use OBS advanced scene switcher to control automatic switching for the scheduled tournaments
-3. Each screen's scene renderer uses a "browser source" configuration with a URL to get the score for that table for that tournament for that day. Each table has a "Stable URL format". For example, for the weekly 8 ball tourney, the url is http://table-2-pc/obs-scores-v0.1.4.html?tourney=weekly8&table=2
+3. Each screen's scene renderer uses a "browser source" configuration with a URL to get the score for that table for that tournament for that day. Each table has a "Stable URL format".
 4. OBS caches the response, and due to timing reasons, we aren't guaranteed that the tourney or scores are ready at the time of automatic switchover. Therefore, we need to "refresh" obs scores via a trigger when ready
 5. After creating a digital pool tourney, we need to refresh the OBS scores to recognize the newly valid DP URL. Although the OBS scores html is cached, the contents of the html include dynamic javascript reloading of the proper DP tournament/table/scores URL.
 
