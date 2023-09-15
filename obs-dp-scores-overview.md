@@ -22,4 +22,10 @@ However, the AETV platform has added layers of complexity:
 
 PICTURE/DIAGRAM OF THE ABOVE - TBD
 
+# AETV Digital Pool Scores spreadsheet
+
+Use the spreadsheet to name the tournament correctly so that the screens can locate the tourney scores.
+
+https://docs.google.com/spreadsheets/d/1OX2CZmV_Q6k5vdQS2Dz-fTWgxkkBNy0G4ZZwIl9Sou8/edit#gid=0
+
 
