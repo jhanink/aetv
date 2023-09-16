@@ -1,10 +1,16 @@
 
-<h1 style="height: 100%;width:100%;display:table-cell;text-align:center;vertical-align:middle;font-size:5rem;">Loading DP Scores...</h1>
-
+<!--
+<div style="display:none;background-color:white;height: 100%;width:100%;display:table-cell;text-align:center;vertical-align:middle;">
+  <div style="font-size:5rem;">    
+    Loading DP Scores...
+    <div id="idTourneyName"></div>
+  </div>
+</div>
+-->
 <script>
 
   /**
-   * obs-scores-v0.1.4.html
+   * obs-scores-v0.1.8.html
    *
    * Client side redirector from cached OBS sourced stable URLs to digital pool.
    * This obviates the need for apache mod-rewrite.
@@ -28,7 +34,10 @@
   const dpTourneyName = tourneyNameSlugMap[tourney];
   const dpTvDisplayUrl = `https://digitalpool.com/tournaments/${dpTourneyName}/tables/table-${tableNumber}/tvdisplay?r=${cacheBuster}`;
 
+  //document.getElementById('idTourneyName').innerHTML = dpTourneyName;
+
   setTimeout(() => {
     document.location.href = dpTvDisplayUrl; 
-  }, 1000)
+  }, 2 * 1000)
 </script>
+
