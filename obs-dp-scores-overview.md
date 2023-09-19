@@ -1,4 +1,43 @@
-# AETV OBS/digital-pool-scores configuration explainer
+# AETV OBS Digital Pool Scores Overview
+
+We use a combination of Digital Pool (DP) and OBS to display match scores on a screen above each table during a tournament.
+
+Digital pool provides a URL to display table's scores when assigned to a match.
+
+We use OBS to compose a "Scene" of "Sources". OBS supports a "Browser source" that renders web content from a URL. We use this to display the DP match scores for each table. The URL is unique by tournament name and table number. If you always reuse the same tournament name, the URL for a table remain constants, but this approach is impractical. However, using distinct tournament names then requires manually updating the OBS Browser source scores URL on each table screen for each tournament - a bit of a hassle that calls for some kind of automated solution.
+
+# OBS Digital Pool Scores Problem & Solution 
+
+We wanted a way to define a "stable url" that could dynamically yield new tournament scores, something like "http://table-2-pc/weekly8/table-2" and use apache mod_rewrite proxy redirect to the current tournament's digital pool url "http://digitalpool.com/tournaments/weekly-8-ball-good-times-billiards-9-15-2023/table-2/tvdisplay". With apache, we're able to inject date values when rewriting the URL between the "stable url" and "active url" using a consistent url-mapping.
+
+We encountered a series of obstacles.
+
+Problem 1: scene switching
+The first problem with was that the screens are scheduled to switch over to the tourney scenes before the digital pool tournament was created. This caused OBS to exercise the URL and cache "no tourney found". Then when the tournament was created, there is no push signal for OBS to refresh the content.
+
+Solution 1:
+To signal OBS to refresh the scores, we added a step after creating the tourney to visit a URL, e.g. http://table-2-pc/dprefresh.html that uses apache custom log and OBS Advanced Scene Switcher to perform a source refresh on log file modification. However, this failed to work because OBS simply returned the previously cached result.
+
+Problem 2: source caching
+The second problem was the OBS source cache. We needed a way to bust the cache.
+
+Solution 2:
+How about using a "stable url" with a client side redirect "http://table-2-pc/obs-scores.html?tourney=weekly8&table=2", so that OBS source caches the static html response but the html contains dynamic javascript able to redirect to the right place. However, this still didn't work. The OBS source caching was too aggressive and cached the last content returned, resulting in the same outcome as Problem 1.
+
+NOTE:
+OBS sources distinguish between refreshing the source and refreshing the cache. We found a way to trigger refreshing the sources, but triggering cache invalidation was more elusive. There is a handy button to refresh cache in OBS source config, but this is a manual button, and we need an automated signal.
+
+Problem 3: the final obstacle - cache invalidation
+We need a way to invalidate the cache, but there appeared to be no automated, scriptable way of accomplishing this. What to do.
+
+Solution 3:
+The final piece of the puzzle was discovered in the source config
+
+![](https://github.com/playatgtb/[aetv]/blob/main/obs-source-unchecked.png?raw=true)
+
+
+
+# AETV OBS Digital Pool Scores Configuration
 
 In a digital pool tournament, the system keeps track of the tables in use and the scores for each of them. Each table is given a URL to display the table's match score.
 
@@ -17,10 +56,9 @@ However, the AETV platform has added layers of complexity:
 3. Each screen's scene renderer uses a "browser source" configuration with a URL to get the score for that table for that tournament for that day. Each table has a "Stable URL format".
 4. OBS caches the response, and due to timing reasons, we aren't guaranteed that the tourney or scores are ready at the time of automatic switchover. Therefore, we need to "refresh" obs scores via a trigger when ready
 5. After creating a digital pool tourney, we need to refresh the OBS scores to recognize the newly valid DP URL. Although the OBS scores html is cached, the contents of the html include dynamic javascript reloading of the proper DP tournament/table/scores URL.
+6. Go to http://table-2-pc/dpscores.html to refresh the score sources
 
-PICTURE/DIAGRAM OF THE ABOVE - TBD
-
-# AETV Digital Pool Scores spreadsheet
+# AETV Digital Pool Scores Spreadsheet
 
 Use the spreadsheet to name the tournament correctly so that the screens can locate the tourney scores.
 
