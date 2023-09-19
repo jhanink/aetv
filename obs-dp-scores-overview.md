@@ -56,7 +56,7 @@ Our solution ultimately required a complex combination of
 
 # OBS/DP Tourney Naming Conventions
 
-Use the spreadsheet to name the tournament correctly so that the screens can locate the tourney scores.
+Use the naming conventions for DP tourneys so that the table screens can locate the their scores using the codified URL mappings.
 
 2-step instructions are provided in the spreadsheet.
 
