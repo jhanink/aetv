@@ -48,7 +48,7 @@ What did this mean - "Shutdown source when not visible"? Could this mean that it
 ![](https://github.com/playatgtb/aetv/blob/main/images/obs-macro-refresh-scores-2.png?raw=true)
 
 ## Final Thoughts
-Integrating with OBS and Digital pool with our screens required an iterative process of learning the (sometimes unexpected) behavior of OBS, browser source, advanced screen switcher, and considerable trial and error to overcome a very aggressive OBS cache. We also had to incorporate an apache server as an intermediary for stable URLs and OBS triggers.
+Integrating OBS and Digital pool with our screens required an iterative process of learning the (sometimes unexpected) behavior of OBS, browser source, advanced screen switcher, and considerable trial and error to overcome a very aggressive OBS cache. We also had to incorporate an apache server as an intermediary for stable URLs and OBS triggers.
 
 Our solution ultimately required a complex combination of
 * OBS source settings
