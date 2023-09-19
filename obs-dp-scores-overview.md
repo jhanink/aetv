@@ -12,30 +12,45 @@ We wanted a way to define a "stable url" that could dynamically yield new tourna
 
 We encountered a series of obstacles.
 
-Problem 1: scene switching
-The first problem with was that the screens are scheduled to switch over to the tourney scenes before the digital pool tournament was created. This caused OBS to exercise the URL and cache "no tourney found". Then when the tournament was created, there is no push signal for OBS to refresh the content.
+## Problem 1
+Scene Switching - The first problem with was that the screens are scheduled to switch over to the tourney scenes before the digital pool tournament was created. This caused OBS to exercise the URL and cache "no tourney found". Then when the tournament was created, there is no push signal for OBS to refresh the content.
 
-Solution 1:
+## Solution 1
 To signal OBS to refresh the scores, we added a step after creating the tourney to visit a URL, e.g. http://table-2-pc/dprefresh.html that uses apache custom log and OBS Advanced Scene Switcher to perform a source refresh on log file modification. However, this failed to work because OBS simply returned the previously cached result.
 
-Problem 2: source caching
-The second problem was the OBS source cache. We needed a way to bust the cache.
+## Problem 2
+Source Caching - The second problem was the OBS source cache. We needed a way to bust the cache.
 
-Solution 2:
+## Solution 2
 How about using a "stable url" with a client side redirect "http://table-2-pc/obs-scores.html?tourney=weekly8&table=2", so that OBS source caches the static html response but the html contains dynamic javascript able to redirect to the right place. However, this still didn't work. The OBS source caching was too aggressive and cached the last content returned, resulting in the same outcome as Problem 1.
 
-NOTE:
+## NOTE
 OBS sources distinguish between refreshing the source and refreshing the cache. We found a way to trigger refreshing the sources, but triggering cache invalidation was more elusive. There is a handy button to refresh cache in OBS source config, but this is a manual button, and we need an automated signal.
 
-Problem 3: the final obstacle - cache invalidation
-We need a way to invalidate the cache, but there appeared to be no automated, scriptable way of accomplishing this. What to do.
+## Problem 3
+Cache Invalidation (the final obstacle) - We need a way to invalidate the cache, but there appeared to be no automated, scriptable way of accomplishing this. What to do.
 
-Solution 3:
-The final piece of the puzzle was discovered in the source config
+## Solution 3
+The final piece of the puzzle was discovered in the source config.
 
-![](https://github.com/playatgtb/[aetv]/blob/main/obs-source-unchecked.png?raw=true)
+![](https://github.com/playatgtb/aetv/blob/main/images/obs-source-shutdown-unchecked.png?raw=true)
 
+What did this mean "Shutdown source when not visible"? Could this mean that it unloaded the source and effectively invalidated the cache? What else could it mean? We had to try it. Check that box, then hide and show the source. Boom. Worked. No Way. Now, can we turn the manual steps into an automated macro? Yes. Let's toggle the visibility of the source OFF and ON.
 
+### Toggle OFF
+![](https://github.com/playatgtb/aetv/blob/main/images/obs-macro-refresh-scores-1.png?raw=true)
+
+### Wait 1 second and Toggle ON
+![](https://github.com/playatgtb/aetv/blob/main/images/obs-macro-refresh-scores-2.png?raw=true)
+
+## Final Thoughts
+Integrating with OBS and Digital pool with our screens required an iterative process of learning the ins and outs of OBS, browser source, advanced screen switcher, and considerable trial and error to overcome a very aggressive OBS browser cache.
+
+Our solution ultimately required a complex combination of
+* OBS source settings
+* Advanced Scene Switcher macros
+* A per table apache instance Custom Log and mod_rewrite config
+* A tournament naming convention for OBS browser sources
 
 # AETV OBS Digital Pool Scores Configuration
 
