@@ -54,7 +54,7 @@ Our solution ultimately required a complex combination of
 * A per table apache instance Custom Log and mod_rewrite config
 * A tournament naming convention for OBS browser sources
 
-# OBS/DP Tourney Name Spreadsheet
+# OBS/DP Tourney Naming Conventions
 
 Use the spreadsheet to name the tournament correctly so that the screens can locate the tourney scores.
 
