@@ -1,4 +1,4 @@
-# AETV OBS Digital Pool Scores Overview
+# Overview
 
 We use a combination of Digital Pool (DP) and OBS to display match scores on a screen above each table during a tournament.
 
@@ -6,7 +6,7 @@ Digital pool provides a URL to display table scores when assigned to a match.
 
 We use OBS to compose a "Scene" of "Sources". OBS supports a "Browser source" that renders web content from a URL. We use this to display the DP match scores for each table. The URL is unique by tournament name and table number. If you always reuse the same tournament name, the URL for a table remain constant, but this approach is impractical. However, using distinct tournament names requires manually updating the OBS Browser source configuration on each table screen for each tournament - a big hassle that calls out for some kind of automated solution.
 
-# OBS/DP Automation Engeering Journey 
+# OBS/DP Automation Journey 
 
 We wanted a way provide the tournament directors an engineering solution to define a "stable url" that could dynamically show new tournament scores with minimal manual intevention.
 
@@ -54,12 +54,10 @@ Our solution ultimately required a complex combination of
 * A per table apache instance Custom Log and mod_rewrite config
 * A tournament naming convention for OBS browser sources
 
-# AETV Digital Pool Scores Spreadsheet
+# OBS/DP Tourney Name Spreadsheet
 
 Use the spreadsheet to name the tournament correctly so that the screens can locate the tourney scores.
 
 2-step instructions are provided in the spreadsheet.
 
 https://docs.google.com/spreadsheets/d/1OX2CZmV_Q6k5vdQS2Dz-fTWgxkkBNy0G4ZZwIl9Sou8/edit#gid=0
-
-
