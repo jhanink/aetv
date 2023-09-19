@@ -6,7 +6,7 @@ Digital pool provides a URL to display table scores when assigned to a match.
 
 We use OBS to compose a "Scene" of "Sources". OBS supports a "Browser source" that renders web content from a URL. We use this to display the DP match scores for each table. The URL is unique by tournament name and table number. If you always reuse the same tournament name, the URL for a table remain constant, but this approach is impractical. However, using distinct tournament names requires manually updating the OBS Browser source configuration on each table screen for each tournament - a big hassle that calls out for some kind of automated solution.
 
-# OBS Digital Pool Scores Problem & Solution 
+# OBS/DP Automation Engeering Journey 
 
 We wanted a way provide the tournament directors an engineering solution to define a "stable url" that could dynamically show new tournament scores with minimal manual intevention.
 
