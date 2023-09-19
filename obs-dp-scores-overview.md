@@ -18,7 +18,7 @@ We encountered a series of obstacles that weren't clear at first, but ultimately
 Scene Switching - We encountered the first problem after adding scene scheduling to automatically switch to the day's tournament scene. This caused OBS to exercise the scene's source URL and cache "no tourney found". Once the DP tournament got created, there was no push signal for OBS to refresh the content.
 
 ## Solution 1
-We added a manual step after creating a tourney to visit a URL that signal OBS to trigger a source refresh from an apache log file modification. This refreshed the source, but did not refresh the cache. No Dice.
+We added a manual step after creating a tourney to visit a URL to signal OBS to trigger a source refresh from an apache log file modification. This refreshed the source, but did not refresh the cache. No Dice.
 
 ## Problem 2
 Source Caching - Attacking the OBS source cache. We needed a way to bust the cache.
