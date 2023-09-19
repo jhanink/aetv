@@ -24,7 +24,7 @@ We added a manual step after creating a tourney to visit a URL to signal OBS to 
 Source Caching - Attacking the OBS source cache. We needed a way to bust the cache.
 
 ## Solution 2
-How about using a "stable url" with parameters and a client side, hoping that OBS would cache the initial response and not the redirect. BUT - no luck. The OBS source aggressively caches all the content, resulting in exactly the same outcome as Problem 1.
+How about using a "stable url" with parameters and a client side redirect, hoping that OBS would cache the initial response and not the second response. BUT - no luck. The OBS source aggressively caches all the content, resulting in exactly the same outcome as Problem 1.
 
 ## NOTE
 OBS sources distinguish between refreshing the source and refreshing the cache. We found a way to trigger refreshing the sources, but triggering cache invalidation was more elusive. There is a handy button to manually refresh cache in OBS source config, but we need an automated signal.
