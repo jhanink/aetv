@@ -8,9 +8,11 @@ We use OBS to compose a "Scene" of "Sources". OBS supports a "Browser source" th
 
 # OBS Digital Pool Scores Problem & Solution 
 
-We wanted a way to define a "stable url" that could dynamically yield new tournament scores, something like "http://table-2-pc/weekly8/table-2" and use apache mod_rewrite proxy redirect to the current tournament's digital pool url "http://digitalpool.com/tournaments/weekly-8-ball-good-times-billiards-9-15-2023/table-2/tvdisplay". With apache, we're able to inject date values when rewriting the URL between the "stable url" and "active url" using a consistent url-mapping.
+We wanted a way provide the tournament directors an engineering solution to define a "stable url" that could dynamically show new tournament scores with minimal manual intevention.
 
-We encountered a series of obstacles.
+We started by defining an OBS browser source "stable URL" and an apache level mapping to "DP URLS".
+
+We encountered a series of obstacles that weren't clear at first, but ultimately, they all related to the OBS browser source cache.
 
 ## Problem 1
 Scene Switching - The first problem with was that the screens are scheduled to switch over to the tourney scenes before the digital pool tournament was created. This caused OBS to exercise the URL and cache "no tourney found". Then when the tournament was created, there is no push signal for OBS to refresh the content.
