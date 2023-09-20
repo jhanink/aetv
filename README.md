@@ -11,7 +11,7 @@ Code, instructions, documentation, and help files for projects that fuel Automat
 * htdocs
   * 89balls.png
   * dpscores.html
-  * obs-scores-v0.1.4.html
+  * obs-scores.html
 * httpd.conf
     ```
     # MAC
