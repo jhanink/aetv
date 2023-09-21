@@ -10,40 +10,13 @@ Code, instructions, documentation, and help files for projects that fuel Automat
 ## Apache
 * htdocs
   * 89balls.png
+  * cmd-switch-XXX.png
+    * XXX=general|mezz9|usapl8|weekly8
   * dpscores.html
   * obs-scores.html
+  * obs-command.html
 * httpd.conf
-    ```
-    # MAC
-    <Directory "/Library/WebServer/Documents">
-      Options Indexes Multiviews FollowSymLinks
-      MultiviewsMatch Any
-      AllowOverride All
-      Order allow,deny
-      Allow from all
-      Require all granted
-    </Directory>
-
-    # WINDOWS
-    <Directory "${SRVROOT}/htdocs">
-      Options Indexes Multiviews FollowSymLinks
-      MultiviewsMatch Any
-      AllowOverride All
-      Require all granted 
-    </Directory>
-    ```
-
-    ```
-    <IfModule log_config_module>
-      # MAC
-      SetEnvIf Request_URI 89balls\.png dprefreshlog
-      CustomLog "/private/var/log/dprefresh.log" common env=dprefreshlog
-
-      # WINDOWS
-      SetEnvIf Request_URI 89balls\.png dprefreshlog
-      CustomLog "logs\dprefresh.log" common env=dprefreshlog
-    </IfModule>
-    ```
+   
 ## OBS
   * scenes
   * score sources
