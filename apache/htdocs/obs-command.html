@@ -1,0 +1,25 @@
+<script>
+  const urlParams = new URLSearchParams(window.location.search);
+
+  const CMD = urlParams.get('c');
+  const VAL = urlParams.get('v');
+  const RAND = Math.random();
+
+  const TABLES = [2,3,4,5,6];
+
+  const ALLOWED_VALUES = {
+    'general': 'general',
+    'mezz9': 'mezz9',
+    'usapl8': 'usapl8',
+    'weekly8': 'weekly8',
+  }
+
+  const SCENE = ALLOWED_VALUES[ VAL ] || 'general'
+
+  if (CMD === 'switch') {
+    TABLES.forEach((id) => {
+      (new Image()).src=`http://table-${id}-pc/cmd-switch-${SCENE}.png?r=${RAND}`;
+    });
+  }
+   
+</script>

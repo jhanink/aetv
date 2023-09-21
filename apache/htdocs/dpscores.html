@@ -16,12 +16,13 @@
    * 
    */
 
-  (new Image()).src="http://table-2-pc/89balls.png?r="+Math.random();
-  (new Image()).src="http://table-3-pc/89balls.png?r="+Math.random();
-  (new Image()).src="http://table-4-pc/89balls.png?r="+Math.random();
-  (new Image()).src="http://table-5-pc/89balls.png?r="+Math.random();
-  (new Image()).src="http://table-6-pc/89balls.png?r="+Math.random();
-  (new Image()).src="http://goods-mbp/89balls.png?r="+Math.random();
+   const tables = [2,3,4,5,6];
+
+   tables.forEach((id) => {
+    (new Image()).src=`http://table-${id}-pc/89balls.png?r=`+Math.random();
+   });
+
+   (new Image()).src=`http://goods-mbp/89balls.png?r=`+Math.random();
 
   setTimeout(() => {
     window.close();
