@@ -1,4 +1,10 @@
 <script>
+
+  /**
+   * v0.0.1
+   * Command to switch screens to a chosen scene
+   * http://table-2-pc/obs-command.html?c=switch&v=general|mezz9|usapl8|weekly8
+   **/
   const urlParams = new URLSearchParams(window.location.search);
 
   const CMD = urlParams.get('c');
@@ -21,5 +27,5 @@
       (new Image()).src=`http://table-${id}-pc/cmd-switch-${SCENE}.png?r=${RAND}`;
     });
   }
-   
+
 </script>

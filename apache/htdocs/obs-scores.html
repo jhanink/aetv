@@ -1,20 +1,10 @@
-
-<!--
-<div style="display:none;background-color:white;height: 100%;width:100%;display:table-cell;text-align:center;vertical-align:middle;">
-  <div style="font-size:5rem;">    
-    Loading DP Scores...
-    <div id="idTourneyName"></div>
-  </div>
-</div>
--->
 <script>
 
   /**
    * obs-scores-v0.1.8.html
    *
-   * Client side redirector from cached OBS sourced stable URLs to digital pool.
-   * This obviates the need for apache mod-rewrite.
-   * 
+   * Client side redirector from cached OBS source stable URLs to digital pool.
+   *
    */
   const urlParams = new URLSearchParams(window.location.search);
   const tourney = urlParams.get('tourney');
@@ -23,7 +13,7 @@
 
   // M-D-YYYY format
   const dateMDYYYY= new Date().toLocaleDateString('en-US').replaceAll('/', '-');
-  
+
   const tourneyNameSlugMap = {
     'mezz9': `mezz-la-9-ball-good-times-billiards-${dateMDYYYY}`,
     'usapl8': `usapl-8-ball-14-point-good-times-billiards-${dateMDYYYY}`,
@@ -34,10 +24,7 @@
   const dpTourneyName = tourneyNameSlugMap[tourney];
   const dpTvDisplayUrl = `https://digitalpool.com/tournaments/${dpTourneyName}/tables/table-${tableNumber}/tvdisplay?r=${cacheBuster}`;
 
-  //document.getElementById('idTourneyName').innerHTML = dpTourneyName;
-
   setTimeout(() => {
-    document.location.href = dpTvDisplayUrl; 
-  }, 2 * 1000)
+    document.location.href = dpTvDisplayUrl;
+  }, 2 * 1000);
 </script>
-
