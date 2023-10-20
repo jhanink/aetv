@@ -3,7 +3,8 @@
   /**
    * obs-scores-v0.1.9.html
    *
-   * Client side redirector from cached OBS source stable URLs to digital pool.
+   * Client side redirector from cached OBS sourced stable URLs to digital pool.
+   * This obviates the need for apache mod-rewrite.
    *
    */
   const urlParams = new URLSearchParams(window.location.search);
@@ -11,15 +12,18 @@
   const tableNumber = urlParams.get('table');
   const cacheBuster = Math.random();
 
-  // M-D-YYYY format
-  const dateMDYYYY= new Date().toLocaleDateString('en-US').replaceAll('/', '-');
+  // date formatting
+  const date = new Date().toLocaleDateString('en-US');
+  const dateParts = new Date().toLocaleDateString('en-US').split('/');
+  const dateYear= dateParts[2].substring(2,4);
+  const dateMDYY = [dateParts[0], dateParts[1], dateYear].join('-');
+  const dateMDYYYY = [dateParts[0], dateParts[1], dateParts[2]].join('-');
 
   const tourneyNameSlugMap = {
-    'mezz9': `mezz-la-9-ball-good-times-billiards-${dateMDYYYY}`,
+    'mezz9': `mezz-la-9-ball-series-weeklies-good-times-billiards-s-${dateMDYY}`,
     'usapl8': `usapl-8-ball-14-point-good-times-billiards-${dateMDYYYY}`,
     'weekly8': `weekly-8-ball-good-times-billiards-${dateMDYYYY}`,
     'general': `general-good-times-billiards-${dateMDYYYY}`,
-    'test': 'gt-test-forever',
   };
 
   const dpTourneyName = tourneyNameSlugMap[tourney];
@@ -27,5 +31,6 @@
 
   setTimeout(() => {
     document.location.href = dpTvDisplayUrl;
-  }, 1 * 1000);
+  }, 1 * 1000)
 </script>
+
