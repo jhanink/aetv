@@ -1,3 +1,9 @@
+<div style="background-color:white;height: 100%;width:100%;display:table-cell;text-align:center;vertical-align:middle;">
+  <div style="display:none;font-size:5rem;">
+    Loading DP Scores...
+    <div id="idTourneyName"></div>
+  </div>
+</div>
 <script>
 
   /**
@@ -12,11 +18,12 @@
   const tableNumber = urlParams.get('table');
   const cacheBuster = Math.random();
 
-  // date formatting
+  // date format
+  // mezz: short year MDYY
+  // others: full year MDYYYY
   const date = new Date().toLocaleDateString('en-US');
   const dateParts = new Date().toLocaleDateString('en-US').split('/');
-  const dateYear= dateParts[2].substring(2,4);
-  const dateMDYY = [dateParts[0], dateParts[1], dateYear].join('-');
+  const dateMDYY = [dateParts[0], dateParts[1], dateParts[2].substring(2,4)].join('-');
   const dateMDYYYY = [dateParts[0], dateParts[1], dateParts[2]].join('-');
 
   const tourneyNameSlugMap = {
@@ -28,6 +35,8 @@
 
   const dpTourneyName = tourneyNameSlugMap[tourney];
   const dpTvDisplayUrl = `https://digitalpool.com/tournaments/${dpTourneyName}/tables/table-${tableNumber}/tvdisplay?r=${cacheBuster}`;
+
+  document.getElementById('idTourneyName').innerHTML = dpTourneyName;
 
   setTimeout(() => {
     document.location.href = dpTvDisplayUrl;
