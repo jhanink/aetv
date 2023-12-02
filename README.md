@@ -42,7 +42,7 @@ ON each target table-N-pc
 ```
 * net stop Apache2.4
 * net start Apache2.4
-* add SSS custom file modification macro to advanced scene switcher
+* add XXX custom file modification macro to advanced scene switcher
    
 ## OBS
   * scenes
