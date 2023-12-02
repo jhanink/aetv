@@ -16,6 +16,33 @@ Code, instructions, documentation, and help files for projects that fuel Automat
   * obs-scores.html
   * obs-command.html
 * httpd.conf
+
+## Steps to add a new switch command
+
+ON table-2-pc, add command to the map in obs-command.html
+
+```
+  const ALLOWED_VALUES = {
+    'general': 'general',
+    'mezz9': 'mezz9',
+    'usapl8': 'usapl8',
+    'weekly8': 'weekly8',
+    'gtah': 'gtah',
+  }
+```
+
+ON each target table-N-pc
+
+* in htdocs, add cmd-switch-XXX.png
+* in httpd.conf, add custom log 
+```
+   # --- CMD: switch scene ---
+  SetEnvIf Request_URI cmd-switch-XXX\.png XXX
+  CustomLog "logs\cmd-switch-XXX.log" common env=XXX
+```
+* net stop Apache2.4
+* net start Apache2.4
+* add SSS custom file modification macro to advanced scene switcher
    
 ## OBS
   * scenes
