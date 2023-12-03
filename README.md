@@ -11,7 +11,7 @@ Code, instructions, documentation, and help files for projects that fuel Automat
 * htdocs
   * 89balls.png
   * cmd-switch-XXX.png
-    * XXX=general|mezz9|usapl8|weekly8
+    * XXX = general | mezz9 | usapl8 | weekly8 | gtah
   * dpscores.html
   * obs-scores.html
   * obs-command.html
@@ -63,5 +63,10 @@ The "commands" are web services on the master node table-2-pc.
   * description: a general command pattern
 
 ### Switch Scene command
-  * example: table-2-pc/obs-command.html?c=switch&v=mezz9
+  * example: http://table-2-pc/obs-command.html?c=switch&v=mezz9
   * effect: changes all the screens to mezz9
+
+### Stream deck buttons
+* use System Website
+* example - use the close window option
+  *  http://table-2-pc/obs-command.html?c=switch&v=mezz9&o=close
