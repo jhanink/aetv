@@ -10,21 +10,30 @@
   const CMD = urlParams.get('c');
   const VAL = urlParams.get('v');
   const OPTION = urlParams.get('o');
+  const TABLE = urlParams.get('t'); // ability to address a single table
   const RAND = Math.random();
 
-  const TABLES = [2,3,4,5,6];
+  let TABLES = [2,3,4,5,6];
 
   const ALLOWED_VALUES = {
     'general': 'general',
+
     'mezz9': 'mezz9',
+    'mezz': 'mezz9',
+
     'usapl8': 'usapl8',
+    'usapl': 'usapl8',
+
     'weekly8': 'weekly8',
+    'weekly': 'weekly8',
+    
     'gtah': 'gtah',
   }
 
   const SCENE = ALLOWED_VALUES[ VAL ] || 'general'
 
   if (CMD === 'switch') {
+    TABLES = TABLE ? [TABLE] : TABLES;
     TABLES.forEach((id) => {
       (new Image()).src=`http://table-${id}-pc/cmd-switch-${SCENE}.png?r=${RAND}`;
     });
