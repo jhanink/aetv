@@ -1,14 +1,15 @@
 <script>
 
   /**
-   * v0.0.1
+   * v0.0.2
    * Command to switch screens to a chosen scene
-   * http://table-2-pc/obs-command.html?c=switch&v=general|mezz9|usapl8|weekly8
    **/
+
   const urlParams = new URLSearchParams(window.location.search);
 
   const CMD = urlParams.get('c');
   const VAL = urlParams.get('v');
+  const OPTION = urlParams.get('o');
   const RAND = Math.random();
 
   const TABLES = [2,3,4,5,6];
@@ -18,6 +19,7 @@
     'mezz9': 'mezz9',
     'usapl8': 'usapl8',
     'weekly8': 'weekly8',
+    'gtah': 'gtah',
   }
 
   const SCENE = ALLOWED_VALUES[ VAL ] || 'general'
@@ -28,4 +30,10 @@
     });
   }
 
+  if (OPTION === 'close') {
+    setTimeout(() => {
+      window.close();
+    }, 500)
+  }
+   
 </script>
