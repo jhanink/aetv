@@ -21,7 +21,10 @@
   // date format
   // mezz: short year MDYY
   // others: full year MDYYYY
-  const date = new Date().toLocaleDateString('en-US');
+  // subtract 5 hours to stay on the same day when going past midnight
+  const d = new Date();
+  d.setHours(d.getHours() - 5)
+  const date = d.toLocaleDateString('en-US');
   const dateParts = new Date().toLocaleDateString('en-US').split('/');
   const dateMDYY = [dateParts[0], dateParts[1], dateParts[2].substring(2,4)].join('-');
   const dateMDYYYY = [dateParts[0], dateParts[1], dateParts[2]].join('-');
