@@ -16,11 +16,33 @@
    * 
    */
 
-   const tables = [2,3,4,5,6];
+  const tableGroup = urlParams.get('group'); // 7 | 9
 
-   tables.forEach((id) => {
-    (new Image()).src=`http://table-${id}-pc/89balls.png?r=`+Math.random();
-   });
+  const tableGroups = {
+    sevenFooters: [2,3,4,5,6],
+    nineFooters: [12,17,21],
+  }
+  
+  const allTables = [
+    ...tableGroups.sevenFooters,
+    ...tableGroups.nineFooters
+  ];
+
+  if (tableGroup === '7') {
+    pingTables(tableGroups.sevenFooters);
+  } else if (tableGroup === '9') {
+    pingTables(tableGroups.nineFooters);
+  } else if (tableGroup === 'all') {
+    pingTables(allTables);
+  } else {
+    pingTables(tableGroups.sevenFooters);
+  }
+
+  function pingTables(tables) {
+    tables.forEach((id) => {
+      (new Image()).src=`http://table-${id}-pc/89balls.png?r=`+Math.random();
+    });
+  }
 
   setTimeout(() => {
     window.close();
