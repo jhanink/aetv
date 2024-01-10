@@ -25,7 +25,7 @@
   const d = new Date();
   d.setHours(d.getHours() - 5)
   const date = d.toLocaleDateString('en-US');
-  const dateParts = new Date().toLocaleDateString('en-US').split('/');
+  const dateParts = date.split('/');
   const dateMDYY = [dateParts[0], dateParts[1], dateParts[2].substring(2,4)].join('-');
   const dateMDYYYY = [dateParts[0], dateParts[1], dateParts[2]].join('-');
 
