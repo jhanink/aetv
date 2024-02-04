@@ -25,6 +25,7 @@ start and stop apache
 
 ```
 apachectl -k start | stop
+
 ```
 
 ## WINDOWS
@@ -59,8 +60,16 @@ add at the end of `<IfModule log_config_module>`
   CustomLog "logs\cmd-switch-weekly8.log" common env=weekly8
 ```
 
+install httpd
+
+```
+# from C:\Apache24\bin
+./httpd.exe -k install
+```
+
 start and stop apache
 
 ```
 net start | stop Apache2.4
 ```
+

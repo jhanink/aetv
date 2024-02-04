@@ -1,13 +1,12 @@
 <div style="background-color:white;height: 100%;width:100%;display:table-cell;text-align:center;vertical-align:middle;">
   <div style="display:none;font-size:5rem;">
     Loading DP Scores...
-    <div id="idTourneyName"></div>
   </div>
 </div>
 <script>
 
   /**
-   * obs-scores-v0.1.10.html
+   * obs-scores-v0.1.11.html
    *
    * Client side redirector from cached OBS sourced stable URLs to digital pool.
    * This obviates the need for apache mod-rewrite.
@@ -16,7 +15,7 @@
   const urlParams = new URLSearchParams(window.location.search);
   const tourney = urlParams.get('tourney');
   const tableNumber = urlParams.get('table');
-  const cacheBuster = Math.random();
+  const displayType = urlParams.get('type'); // tv (default) | liveStream
 
   // date format
   // mezz: short year MDYY
@@ -44,12 +43,17 @@
   };
 
   const dpTourneyName = tourneyNameSlugMap[tourney];
-  const dpTvDisplayUrl = `https://digitalpool.com/tournaments/${dpTourneyName}/tables/table-${tableNumber}/tvdisplay?r=${cacheBuster}`;
 
-  document.getElementById('idTourneyName').innerHTML = dpTourneyName;
+  // digital pool score url map
+  // tv | liveStream
+  const displayTypes = {
+    tv: `https://digitalpool.com/tournaments/${dpTourneyName}/tables/table-${tableNumber}/tvdisplay`,
+    liveStream: `https://digitalpool.com/tournaments/${dpTourneyName}/overlay/table-${tableNumber}`
+  }
 
   setTimeout(() => {
-    document.location.href = dpTvDisplayUrl;
+    const scoreDisplayUrl = displayTypes[displayType] || displayTypes['tv'];
+    document.location.href = `${scoreDisplayUrl}?r=${Math.random()}`;
   }, 1 * 1000)
 </script>
 
