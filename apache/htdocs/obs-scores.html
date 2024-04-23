@@ -6,7 +6,7 @@
 <script>
 
   /**
-   * obs-scores-v0.1.11.html
+   * obs-scores-v0.1.12.html
    *
    * Client side redirector from cached OBS sourced stable URLs to digital pool.
    * This obviates the need for apache mod-rewrite.
@@ -23,6 +23,7 @@
   // subtract 5 hours to stay on the same day when going past midnight
   const d = new Date();
   d.setHours(d.getHours() - 5)
+  const dayOfWeek = d.getDay(); // 0->Sunday, 1->Monday.... 6->Saturday
   const date = d.toLocaleDateString('en-US');
   const dateParts = date.split('/');
   const dateMDYY = [dateParts[0], dateParts[1], dateParts[2].substring(2,4)].join('-');
@@ -42,7 +43,14 @@
     'general': `general-good-times-billiards-${dateMDYYYY}`,
   };
 
-  const dpTourneyName = tourneyNameSlugMap[tourney];
+  // Calculate the mezz url if it's the right day
+  const mezzDays = [0, 'mezz9m', 0,0,0,0, 'mezz9s'];  
+  mezzTourney = mezzDays[dayOfWeek];
+  calculatedTourney = mezzTourney || tourney;
+
+  // NOTE: for now use the calculated version and ignore any passed in 'tourney' url param
+  // However, in the future, let an explicit tourney url param override the calculated value
+  const dpTourneyName = tourneyNameSlugMap[calculatedTourney];
 
   // digital pool score url map
   // tv | liveStream
