@@ -45,8 +45,8 @@
 
   // Calculate the mezz url if it's the right day
   const mezzDays = [0, 'mezz9m', 0,0,0,0, 'mezz9s'];  
-  mezzTourney = mezzDays[dayOfWeek];
-  calculatedTourney = mezzTourney || tourney;
+  const mezzTourney = mezzDays[dayOfWeek];
+  const calculatedTourney = mezzTourney || tourney;
 
   // NOTE: for now use the calculated version and ignore any passed in 'tourney' url param
   // However, in the future, let an explicit tourney url param override the calculated value
