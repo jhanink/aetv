@@ -1,7 +1,7 @@
 <script>
 
   /**
-   * v0.0.2
+   * v0.0.3
    * Command to switch screens to a chosen scene
    **/
 
@@ -11,10 +11,13 @@
   const VAL = urlParams.get('v');
   const OPTION = urlParams.get('o');
   const TABLE = urlParams.get('t'); // ability to address a single table
+  const GROUP = urlParams.get('g'); // g=7 | g=9 (7 or 9 ft tables)
   const RAND = Math.random();
 
-  let TABLES = [2,3,4,5,6];
-
+  const GROUP_7_FT = [2,3,4,5,6];
+  const GROUP_9_FT = [12,17,21];
+  const TABLES = GROUP === '9' ? GROUP_9_FT : GROUP_7_FT;
+  
   const ALLOWED_VALUES = {
     'general': 'general',
 
