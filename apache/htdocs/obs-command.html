@@ -16,7 +16,8 @@
 
   const GROUP_7_FT = [2,3,4,5,6];
   const GROUP_9_FT = [12,17,21];
-  const TABLES = GROUP === '9' ? GROUP_9_FT : GROUP_7_FT;
+  let TABLES = GROUP === '9' ? GROUP_9_FT : GROUP_7_FT;
+  TABLES = TABLE ? [TABLE] : TABLES;
   
   const ALLOWED_VALUES = {
     'general': 'general',
@@ -36,7 +37,6 @@
   const SCENE = ALLOWED_VALUES[ VAL ] || 'general'
 
   if (CMD === 'switch') {
-    TABLES = TABLE ? [TABLE] : TABLES;
     TABLES.forEach((id) => {
       (new Image()).src=`http://table-${id}-pc/cmd-switch-${SCENE}.png?r=${RAND}`;
     });
